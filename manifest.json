@@ -1,0 +1,16 @@
+{
+  "name": "School Year Calculator",
+  "short_name": "School Year Calc",
+  "description": "Calculate what school year a student should be currently enrolled in based on birthday",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#4caf50",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
