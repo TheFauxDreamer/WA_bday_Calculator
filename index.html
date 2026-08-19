@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Following script is for PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        }
-    </script>
-
+<head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/icon.png">
@@ -97,7 +83,7 @@
     <input type="date" id="birthdate" required onchange="updateAndCalculate()"> <!-- add this with proper values if manual default wanted. value="0000-00-00" --> 
     <div id="result"></div>
     <noscript>
-        <h2> It looks like you've got Javascript disabled. We can't do the calculations without it. Please contact your IT department.</h2>
+        <h2> It looks like you've got Javascript disabled. We can't do the calculations without it. Please contact your IT department or CSC.</h2>
     </noscript>
 </div>
 
@@ -193,21 +179,25 @@
 
         switch (lastTwoLetters) {
             // Yes I know this isn't needed but it's here is they want them to be green or something...
-            case ' 7':
-            case ' 8':
-            case ' 9':
-            case '10':
-            case '11':
-            case '12':
-                colorCh = 'black';
+            case 'en':
+            case 'ry':
+            case ' 1':
+            case ' 2':
+            case ' 3':
+            case ' 4':
+            case ' 5':
+            case ' 6':
+                colorCh = 'blue';
                 break;
             case '18':
             case 'ol':
+            case 'ng':
                 colorCh = 'red';
                 break;
             case ' !':
                 colorCh = 'orange';
                 break;
+            case 'en':
             default:
                 colorCh = 'black';
         }
@@ -224,7 +214,15 @@
 
         return [
             // This is what you change if the State decides to adjust school intake dates again.
-            { start: new Date(`${startYear}-07-01`), end: new Date(`${startYear + 7}-06-30`), year: 'Primary School' },
+            { start: new Date(`${startYear + 8}-07-01`), end: new Date(`${startYear + 15}-06-30`), year: 'Too Young' },
+            { start: new Date(`${startYear + 7}-07-01`), end: new Date(`${startYear + 8}-06-30`), year: 'Kindergarten' },
+            { start: new Date(`${startYear + 6}-07-01`), end: new Date(`${startYear + 7}-06-30`), year: 'Pre-primary' },
+            { start: new Date(`${startYear + 5}-07-01`), end: new Date(`${startYear + 6}-06-30`), year: ' 1' },
+            { start: new Date(`${startYear + 4}-07-01`), end: new Date(`${startYear + 5}-06-30`), year: ' 2' },
+            { start: new Date(`${startYear + 3}-07-01`), end: new Date(`${startYear + 4}-06-30`), year: ' 3' },
+            { start: new Date(`${startYear + 2}-07-01`), end: new Date(`${startYear + 3}-06-30`), year: ' 4' },
+            { start: new Date(`${startYear + 1}-07-01`), end: new Date(`${startYear + 2}-06-30`), year: ' 5' },
+            { start: new Date(`${startYear}-07-01`), end: new Date(`${startYear + 1}-06-30`), year: ' 6' },
             { start: new Date(`${endYear}-07-01`), end: new Date(`${startYear}-06-30`), year: 7 },
             { start: new Date(`${endYear - 1}-07-01`), end: new Date(`${endYear}-06-30`), year: 8 },
             { start: new Date(`${endYear - 2}-07-01`), end: new Date(`${endYear -1}-06-30`), year: 9 },
@@ -234,7 +232,6 @@
             { start: new Date(`${endYear - 20}-07-01`), end: new Date(`${endYear - 5}-06-30`), year: 'Over 18' },
         ];
     }
-
     // Initialize schoolYears with the current year
     window.schoolYears = getSchoolYears(currentYear);
 </script>
